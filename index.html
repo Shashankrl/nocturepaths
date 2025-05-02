@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dijkstra's Algorithm Visualizer</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <h2>Path Finder</h2>
+            <div class="node-selection">
+                <div class="dropdown-container">
+                    <label for="startNode">
+                        <i class="fas fa-play-circle"></i>
+                        Start Location
+                    </label>
+                    <div class="select-wrapper">
+                        <select id="startNode">
+                            <option value="">Select start location</option>
+                        </select>
+                        <div class="select-arrow"></div>
+                    </div>
+                </div>
+                <div class="dropdown-container">
+                    <label for="endNode">
+                        <i class="fas fa-flag-checkered"></i>
+                        End Location
+                    </label>
+                    <div class="select-wrapper">
+                        <select id="endNode">
+                            <option value="">Select end location</option>
+                        </select>
+                        <div class="select-arrow"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button id="findPath">
+                    <i class="fas fa-route"></i>
+                    Find Shortest Path
+                </button>
+                <button id="reset">
+                    <i class="fas fa-redo"></i>
+                    Reset
+                </button>
+            </div>
+            <div class="distance-container">
+                <i class="fas fa-road"></i>
+                <p>Total Distance: <span id="totalDistance">-</span> km</p>
+            </div>
+            <div class="path-summary">
+                <h3><i class="fas fa-info-circle"></i> Path Summary</h3>
+                <div id="pathExplanation" class="explanation">
+                    Select start and end locations to find the shortest path.
+                </div>
+                <div class="path-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Nodes Visited:</span>
+                        <span id="nodesVisited">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Path Length:</span>
+                        <span id="pathLength">-</span>
+                    </div>
+                </div>
+            </div>
+            <div class="legend">
+                <h3>Legend</h3>
+                <div class="legend-item">
+                    <div class="legend-color blue"></div>
+                    <span>Default Location</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color yellow"></div>
+                    <span>Visited Location</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color red"></div>
+                    <span>Shortest Path</span>
+                </div>
+            </div>
+        </div>
+        <div id="map"></div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="graph.js"></script>
+    <script src="dijkstra.js"></script>
+    <script src="app.js"></script>
+</body>
+</html> 

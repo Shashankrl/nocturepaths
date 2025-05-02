@@ -1,0 +1,437 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.controls {
+    width: 360px;
+    padding: 25px;
+    background-color: #2d2d2d;
+    border-right: 1px solid #404040;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
+    overflow-y: auto;
+    height: 100vh;
+}
+
+/* Custom scrollbar for controls */
+.controls::-webkit-scrollbar {
+    width: 8px;
+}
+
+.controls::-webkit-scrollbar-track {
+    background: #2d2d2d;
+    border-radius: 4px;
+}
+
+.controls::-webkit-scrollbar-thumb {
+    background: #4CAF50;
+    border-radius: 4px;
+}
+
+.controls::-webkit-scrollbar-thumb:hover {
+    background: #45a049;
+}
+
+h2 {
+    color: #ffffff;
+    margin-bottom: 15px;
+    font-size: 28px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #4CAF50, #45a049);
+    border-radius: 2px;
+}
+
+.node-selection {
+    background-color: #363636;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border: 1px solid #404040;
+}
+
+.dropdown-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.dropdown-container:last-child {
+    margin-bottom: 0;
+}
+
+label {
+    color: #e0e0e0;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+}
+
+label i {
+    color: #4CAF50;
+    font-size: 16px;
+}
+
+.select-wrapper {
+    position: relative;
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #404040;
+    border-radius: 8px;
+    font-size: 14px;
+    appearance: none;
+    background-color: #2d2d2d;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+select:hover {
+    border-color: #4CAF50;
+    background-color: #363636;
+}
+
+select:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+select option {
+    background-color: #2d2d2d;
+    color: #ffffff;
+    padding: 10px;
+}
+
+.select-arrow {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #4CAF50;
+    pointer-events: none;
+    transition: transform 0.3s ease;
+}
+
+.select-wrapper:hover .select-arrow {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.button-container {
+    display: flex;
+    gap: 15px;
+}
+
+button {
+    padding: 14px;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    flex: 1;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+button:disabled {
+    background: #666;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+button i {
+    font-size: 18px;
+}
+
+#reset {
+    background: linear-gradient(135deg, #f44336, #d32f2f);
+}
+
+#reset:hover:not(:disabled) {
+    box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+}
+
+.distance-container {
+    padding: 20px;
+    background-color: #363636;
+    border-radius: 12px;
+    border: 1px solid #404040;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.distance-container i {
+    color: #4CAF50;
+    font-size: 24px;
+}
+
+.distance-container p {
+    color: #e0e0e0;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+#totalDistance {
+    color: #4CAF50;
+    transition: all 0.3s ease;
+    font-size: 18px;
+}
+
+.path-summary {
+    background-color: #363636;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border: 1px solid #404040;
+}
+
+.path-summary h3 {
+    color: #ffffff;
+    margin-bottom: 15px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.path-summary h3 i {
+    color: #4CAF50;
+    font-size: 20px;
+}
+
+.explanation {
+    color: #e0e0e0;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #2d2d2d;
+    border-radius: 8px;
+    border-left: 4px solid #4CAF50;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.explanation::-webkit-scrollbar {
+    width: 8px;
+}
+
+.explanation::-webkit-scrollbar-track {
+    background: #2d2d2d;
+    border-radius: 4px;
+}
+
+.explanation::-webkit-scrollbar-thumb {
+    background: #4CAF50;
+    border-radius: 4px;
+}
+
+.explanation-line {
+    margin-left: 15px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.explanation-line:last-child {
+    margin-bottom: 0;
+}
+
+.path-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background-color: #2d2d2d;
+    border-radius: 8px;
+    border: 1px solid #404040;
+}
+
+.detail-label {
+    color: #9e9e9e;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+#nodesVisited, #pathLength {
+    color: #4CAF50;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.legend {
+    background-color: #363636;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border: 1px solid #404040;
+}
+
+.legend h3 {
+    color: #ffffff;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    color: #e0e0e0;
+    font-size: 14px;
+}
+
+.legend-color {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.legend-color.blue {
+    background: linear-gradient(135deg, #2196F3, #1976D2);
+}
+
+.legend-color.yellow {
+    background: linear-gradient(135deg, #FFC107, #FFA000);
+}
+
+.legend-color.red {
+    background: linear-gradient(135deg, #F44336, #D32F2F);
+}
+
+#map {
+    flex: 1;
+    height: 100vh;
+    filter: brightness(0.8) contrast(1.2);
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: calc(100% - 360px);
+}
+
+/* Animation styles */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.bounce {
+    animation: bounce 0.5s ease;
+}
+
+/* Leaflet marker animation styles */
+.leaflet-marker-icon {
+    transition: transform 0.3s ease;
+}
+
+.leaflet-marker-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Polyline animation */
+.leaflet-polyline {
+    transition: stroke 0.3s ease, stroke-width 0.3s ease;
+}
+
+/* Custom marker styles */
+.node-marker {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #2196F3;
+    border: 2px solid white;
+}
+
+.visited-node {
+    background-color: #FFC107;
+}
+
+.path-node {
+    background-color: #F44336;
+}
+
+/* Ensure content doesn't get cut off */
+.path-summary, .legend, .distance-container, .node-selection {
+    min-height: fit-content;
+}
+
+/* Add some bottom padding to ensure last element is fully visible */
+.controls::after {
+    content: '';
+    display: block;
+    padding-bottom: 25px;
+} 
